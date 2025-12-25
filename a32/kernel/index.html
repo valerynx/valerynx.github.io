@@ -4,191 +4,209 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>valerynx - a32/kernel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --main-purple: #9d4edd;
-            --dark-purple: #5a189a;
-            --light-purple: #c77dff;
-            --text-color: #e0e0e0;
-            --card-bg: #1a1a1a;
+            --bg: #0d0d0d;
+            --card: #161616;
+            --accent: #a855f7;
+            --text: #e5e7eb;
+            --text-muted: #9ca3af;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
             font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         header {
-            border-bottom: 2px solid var(--main-purple);
-            padding: 3rem 10%;
-            text-align: center;
-            background: linear-gradient(180deg, #12002b 0%, var(--bg-color) 100%);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         header h1 {
-            color: var(--main-purple);
+            color: var(--accent);
+            font-size: 1.8rem;
             margin: 0;
-            font-size: 2.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px var(--main-purple);
+            display: flex;
+            align-items: center;
         }
 
-        header p {
-            color: var(--light-purple);
-            opacity: 0.9;
+        header h1::before {
+            content: "~/ ";
+            opacity: 0.5;
+        }
+
+        .description {
+            color: var(--text-muted);
             margin-top: 10px;
-            font-size: 1.1rem;
-        }
-
-        main {
-            padding: 3rem 10%;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid #333;
+        section {
+            background: var(--card);
             padding: 25px;
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .card:hover {
-            border-color: var(--main-purple);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.15);
-        }
-
-        .card h3 {
-            color: var(--main-purple);
-            margin-top: 0;
+            border-radius: 8px;
+            border: 1px solid #222;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: space-between;
+            transition: border-color 0.3s ease;
+        }
+
+        section:hover {
+            border-color: var(--accent);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin: 0;
         }
 
         .tag {
             font-size: 0.7rem;
-            background: var(--dark-purple);
-            padding: 4px 10px;
-            border-radius: 20px;
-            color: #fff;
+            background: var(--accent);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
             text-transform: uppercase;
         }
 
-        code {
-            display: block;
-            background: #000;
-            padding: 10px;
-            margin: 15px 0;
-            color: #ff79c6;
-            border-radius: 4px;
+        p {
             font-size: 0.9rem;
-            border-left: 3px solid var(--main-purple);
+            margin-bottom: 20px;
+            color: var(--text);
         }
 
         .btn {
             display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: transparent;
-            color: var(--light-purple);
-            border: 1px solid var(--main-purple);
+            color: var(--accent);
             text-decoration: none;
-            border-radius: 6px;
-            transition: 0.3s;
             font-weight: bold;
+            border: 1px solid var(--accent);
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            text-align: center;
         }
 
         .btn:hover {
-            background-color: var(--main-purple);
-            color: white;
-            box-shadow: 0 0 10px var(--main-purple);
+            background: var(--accent);
+            color: #000;
+        }
+
+        .callout {
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
         }
 
         footer {
             text-align: center;
-            padding: 4rem;
-            font-size: 0.85rem;
-            color: #666;
+            padding: 60px 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
             border-top: 1px solid #222;
+            margin-top: 50px;
         }
 
         footer strong {
-            color: var(--light-purple);
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0d0d0d;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--dark-purple);
-            border-radius: 10px;
+            color: var(--accent);
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h3>~/valerynx/a32/kernel</h3>
-    <p>All of list kernel source for A32.</p>
-</header>
+<div class="wrapper">
+    <header>
+        <h1>valerynx/a32/kernel</h1>
+        <div class="description">Collection of kernel sources for the Samsung Galaxy A32.</div>
+    </header>
 
-<main>
-    <div class="grid">
-
-        <div class="card">
-            <h3>vampire<span class="tag">EroFS</span></h3>
-            <p>a experimental repository of moonlight kernel.</p>
-            <a href="https://github.com/valerynx/vampire_samsung_a32" class="btn">GitHub</a>
-        </div>
-
-        <div class="card" style="border-style: dashed;">
-            <h3>moonlight<span class="tag">EroFS</span></h3>
-            <p>moonlight kernel, a combined version of helium + lumikernel erofs. </p>
-            <a href="github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">GitHub</a>
-        </div>
-
-        <div class="card" style="border-style: dashed;">
-            <h3>lumikernel-erofs<span class="tag">EroFS</span></h3>
-            <p>for lumirom version >=8.3 or erofs roms, this is original source of moonlight</p>
-            <a href="github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">GitHub</a>
-        </div>
-      
-        <div class="card" style="border-style: dashed;">
-            <h3>vigus<span class="tag">Normal</span></h3>
-            <p>kernel source a32 have upstreamed to .356 and more.</p>
-            <a href="https://github.com/Samsung-MT6769-Devs/android_kernel_samsung_a32" class="btn" target="_blank">GitHub</a>
-        </div>
-
-        <div class="card" style="border-style: dashed;">
-            <h3>realahnet<span class="tag">Normal</span></h3>
-            <p>original kernel source a32.</p>
-            <a href="https://github.com/realahnet/android_kernel_samsung_a32" class="btn" target="_blank">GitHub</a>
-        </div>
+    <div class="callout">
+        <b>Note:</b> EroFS kernels are optimized for modern ROMs (LumiROM 8.3+). Use Normal kernels for older or stock-based configurations.
     </div>
-</main>
-<footer>
-    <p>Inspired by the <strong>valerynx/a32-useful-things</strong> repository.</p>
-    <p>Used font: <strong>JetBrains Mono</strong></p>
-</footer>
+
+    <div class="grid">
+        <section>
+            <div class="card-header">
+                <h3>vampire</h3>
+                <span class="tag">EroFS</span>
+            </div>
+            <p>An experimental repository of the Moonlight kernel project.</p>
+            <a href="https://github.com/valerynx/vampire_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section>
+            <div class="card-header">
+                <h3>moonlight</h3>
+                <span class="tag">EroFS</span>
+            </div>
+            <p>A combined version of Helium + Lumikernel EROFS.</p>
+            <a href="https://github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section>
+            <div class="card-header">
+                <h3>lumikernel</h3>
+                <span class="tag">EroFS</span>
+            </div>
+            <p>Original source of Moonlight. Recommended for version >= 8.3.</p>
+            <a href="https://github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section style="border-style: dashed;">
+            <div class="card-header">
+                <h3>vigus</h3>
+                <span class="tag">Normal</span>
+            </div>
+            <p>Kernel source upstreamed to .356 and beyond.</p>
+            <a href="https://github.com/Samsung-MT6769-Devs/android_kernel_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section style="border-style: dashed;">
+            <div class="card-header">
+                <h3>realahnet</h3>
+                <span class="tag">Normal</span>
+            </div>
+            <p>The original stock-based kernel source for A32.</p>
+            <a href="https://github.com/realahnet/android_kernel_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+    </div>
+
+    <footer>
+        Inspired by <strong>valerynx/a32-useful-things</strong>
+    </footer>
+</div>
 
 </body>
 </html>
