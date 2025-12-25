@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>valerynx - a32/kernel</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --main-purple: #9d4edd;
+            --dark-purple: #5a189a;
+            --light-purple: #c77dff;
+            --text-color: #e0e0e0;
+            --card-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            border-bottom: 2px solid var(--main-purple);
+            padding: 3rem 10%;
+            text-align: center;
+            background: linear-gradient(180deg, #12002b 0%, var(--bg-color) 100%);
+        }
+
+        header h1 {
+            color: var(--main-purple);
+            margin: 0;
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px var(--main-purple);
+        }
+
+        header p {
+            color: var(--light-purple);
+            opacity: 0.9;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        main {
+            padding: 3rem 10%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            padding: 25px;
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--main-purple);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.15);
+        }
+
+        .card h3 {
+            color: var(--main-purple);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: var(--dark-purple);
+            padding: 4px 10px;
+            border-radius: 20px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        code {
+            display: block;
+            background: #000;
+            padding: 10px;
+            margin: 15px 0;
+            color: #ff79c6;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--main-purple);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--light-purple);
+            border: 1px solid var(--main-purple);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: var(--main-purple);
+            color: white;
+            box-shadow: 0 0 10px var(--main-purple);
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem;
+            font-size: 0.85rem;
+            color: #666;
+            border-top: 1px solid #222;
+        }
+
+        footer strong {
+            color: var(--light-purple);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0d0d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--dark-purple);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>~/valerynx/a32/kernel</h1>
+    <p>All of list kernel source for A32.</p>
+</header>
+
+<main>
+    <div class="grid">
+
+        <div class="card">
+            <h3>vampire<span class="tag">EroFS</span></h3>
+            <p>a experimental repository of moonlight kernel.</p>
+            <p style="font-size: 0.8rem; color: #888;">Compatible with: Android 11, 12, and 13.</p>
+            <a href="https://github.com/valerynx/vampire_samsung_a32" class="btn">GitHub</a>
+        </div>
+
+        <div class="card" style="border-style: dashed;">
+            <h3>moonlight<span class="tag">EroFS</span></h3>
+            <p>moonlight kernel, a combined version of helium + lumikernel erofs. </p>
+            <a href="github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">GitHub</a>
+        </div>
+
+        <div class="card" style="border-style: dashed;">
+            <h3>lumikernel-erofs<span class="tag">EroFS</span></h3>
+            <p>for lumirom version >=8.3 or erofs roms, this is original source of moonlight</p>
+            <a href="github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">GitHub</a>
+        </div>
+      
+        <div class="card" style="border-style: dashed;">
+            <h3>vigus<span class="tag">Normal</span></h3>
+            <p>kernel source a32 have upstreamed to .356 and more.</p>
+            <a href="https://github.com/Samsung-MT6769-Devs/android_kernel_samsung_a32" class="btn" target="_blank">GitHub</a>
+        </div>
+
+        <div class="card" style="border-style: dashed;">
+            <h3>realahnet<span class="tag">Normal</span></h3>
+            <p>original kernel source a32.</p>
+            <a href="https://github.com/realahnet/android_kernel_samsung_a32" class="btn" target="_blank">GitHub</a>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>Inspired by the <strong>valerynx/a32-useful-things</strong> repository.</p>
+    <p>Used font: <strong>JetBrains Mono</strong></p>
+</footer>
+
+</body>
+</html>
