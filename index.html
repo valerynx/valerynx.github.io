@@ -3,109 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>valerynx</title>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:wght@400;700&display=swap" rel="stylesheet">
+    <title>valerynx - home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --accent-purple: #a371f7;
-            --text-main: #e6edf3;
-            --text-dim: #8b949e;
-            --border-color: #30363d;
+            --bg: #0d0d0d;
+            --card: #161616;
+            --accent: #a855f7;
+            --text: #e5e7eb;
+            --text-muted: #9ca3af;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Google Sans Code', monospace;
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             margin: 0;
-            padding: 2rem;
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 40px auto;
         }
 
         header {
-            max-width: 1000px;
-            margin: 0 auto 3rem auto;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         h1 {
-            color: var(--accent-purple);
+            color: var(--accent);
             font-size: 1.8rem;
+            margin: 0;
         }
 
-        .repo-grid {
+        .header-desc {
+            color: var(--text-muted);
+            margin-top: 10px;
+            font-size: 0.95rem;
+        }
+
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
         }
 
-        .repo-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
+        section {
+            background: var(--card);
+            padding: 25px;
             border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.2s, border-color 0.2s;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
-        .repo-card:hover {
+        section:hover {
+            border-color: var(--accent);
             transform: translateY(-4px);
-            border-color: var(--accent-purple);
         }
 
-        .repo-name {
-            color: var(--accent-purple);
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
 
-        .repo-description {
-            color: var(--text-dim);
+        h3::before {
+            content: "→ ";
+            font-weight: bold;
+        }
+
+        p {
             font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
             flex-grow: 1;
         }
 
-        .repo-stats {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.8rem;
-            color: var(--text-dim);
+        .btn {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            text-align: center;
         }
 
-        .lang-dot {
-            height: 10px;
-            width: 10px;
-            background-color: var(--accent-purple);
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 4px;
+        .btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .callout {
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
         }
 
         footer {
             text-align: center;
-            margin-top: 4rem;
-            color: var(--text-dim);
+            padding: 60px 0;
+            color: var(--text-muted);
             font-size: 0.8rem;
+            border-top: 1px solid #222;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
 
+<div class="wrapper">
     <header>
-        <h1 id="header-title">~/valerynx</h1>
-        <p>our website.</p>
+        <h1>~/valerynx</h1>
+        <p class="header-desc">Unofficial website for A32 development and resources.</p>
     </header>
 
-    <main class="repo-grid" id="repo-container">
-        </main>
+    <div class="callout">
+        Welcome to our website. Here you can find all the necessary tools, guides, and sources for the Samsung Galaxy A32.
+    </div>
+
+    <main class="grid">
+        <section>
+            <h3>Guides</h3>
+            <p>Step-by-step instructions for unlocking bootloaders, installing recoveries, and flashing custom ROMs.</p>
+            <a href="https://valerynx.vercel.app/a32/guide/" class="btn">Browse Guides</a>
+        </section>
+
+        <section>
+            <h3>Downloads</h3>
+            <p>Direct links to TWRP, OrangeFox, Odin, and essential platform tools for device maintenance.</p>
+            <a href="https://valerynx.vercel.app/a32/downloadcenter" class="btn">Open Center</a>
+        </section>
+
+        <section>
+            <h3>Kernels</h3>
+            <p>A collection of kernel sources including Moonlight, Vampire, and Vigus for different Android versions.</p>
+            <a href="https://valerynx.vercel.app/a32/kernel/" class="btn">View Sources</a>
+        </section>
+
+        <section>
+            <h3>Repositories</h3>
+            <p>Live feed of pinned projects and recent activity from the official valerynx GitHub profile.</p>
+            <a href="https://valerynx.vercel.app/pinned/" class="btn">Explore GitHub</a>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 valerynx
+    </footer>
+</div>
 
 </body>
+</html>
