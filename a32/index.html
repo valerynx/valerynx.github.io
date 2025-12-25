@@ -4,76 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>valerynx - a32 useful things</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d0d0d;
-            --main-purple: #9d4edd;
-            --dark-purple: #5a189a;
-            --light-purple: #c77dff;
-            --text-color: #e0e0e0;
-            --card-bg: #1a1a1a;
+            --bg: #0d0d0d;
+            --card: #161616;
+            --accent: #a855f7; /* Purple from your guides */
+            --text: #e5e7eb;
+            --text-muted: #9ca3af;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
             font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         header {
-            border-bottom: 2px solid var(--main-purple);
-            padding: 3rem 10%;
-            text-align: center;
-            background: linear-gradient(180deg, #12002b 0%, var(--bg-color) 100%);
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            text-align: left;
         }
 
-        header h1 {
-            color: var(--main-purple);
-            margin: 0;
-            font-size: 2.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 15px var(--main-purple);
+        h1 {
+            color: var(--accent);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-transform: lowercase;
         }
 
-        header p {
-            color: var(--light-purple);
-            opacity: 0.9;
-            margin-top: 10px;
-            font-size: 1.1rem;
+        .description {
+            color: var(--text-muted);
+            font-size: 1rem;
         }
 
-        main {
-            padding: 3rem 10%;
+        .callout {
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 25px;
+            margin-top: 30px;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid #333;
+        section {
+            background: var(--card);
             padding: 25px;
-            border-radius: 12px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
+            border-radius: 8px;
+            border: 1px solid #222;
+            transition: border-color 0.3s ease;
         }
 
-        .card:hover {
-            border-color: var(--main-purple);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.15);
+        section:hover {
+            border-color: var(--accent);
         }
 
-        .card h3 {
-            color: var(--main-purple);
+        h3 {
+            color: var(--accent);
+            font-size: 1.3rem;
             margin-top: 0;
             display: flex;
             align-items: center;
@@ -82,97 +87,100 @@
 
         .tag {
             font-size: 0.7rem;
-            background: var(--dark-purple);
-            padding: 4px 10px;
-            border-radius: 20px;
-            color: #fff;
-            text-transform: uppercase;
+            background: var(--accent);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
         }
 
-        code {
-            display: block;
-            background: #000;
-            padding: 10px;
-            margin: 15px 0;
-            color: #ff79c6;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            border-left: 3px solid var(--main-purple);
+        p {
+            margin-bottom: 20px;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: transparent;
-            color: var(--light-purple);
-            border: 1px solid var(--main-purple);
+            color: var(--accent);
             text-decoration: none;
-            border-radius: 6px;
-            transition: 0.3s;
             font-weight: bold;
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .btn:hover {
-            background-color: var(--main-purple);
-            color: white;
-            box-shadow: 0 0 10px var(--main-purple);
+            background: var(--accent);
+            color: #000;
+        }
+
+        .github-link {
+            border-style: dashed;
         }
 
         footer {
             text-align: center;
-            padding: 4rem;
-            font-size: 0.85rem;
-            color: #666;
+            padding: 60px 0;
+            color: var(--text-muted);
+            font-size: 0.8rem;
             border-top: 1px solid #222;
+            margin-top: 50px;
         }
 
         footer strong {
-            color: var(--light-purple);
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0d0d0d;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--dark-purple);
-            border-radius: 10px;
+            color: var(--accent);
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>a32 useful things</h1>
-    <p>Community-driven website for the Samsung Galaxy A32 (A325 series).</p>
-</header>
+<div class="wrapper">
+    <header>
+        <h1>a32 useful things</h1>
+        <div class="description">Community-driven resource hub for the Samsung Galaxy A32 (A325 series).</div>
+    </header>
 
-<main>
-    <div class="grid">
-
-        <div class="card">
-            <h3>Custom Recovery <span class="tag">TWRP</span></h3>
-            <p>Installation guides for TWRP and OrangeFox Recovery for A325F/M/N models.</p>
-            <p style="font-size: 0.8rem; color: #888;">Compatible with: Android 11, 12, and 13.</p>
-            <a href="https://valerynx.github.io/downloadcenter" class="btn">Go to download center</a>
-        </div>
-
-        <div class="card" style="border-style: dashed;">
-            <h3>GitHub Source <span class="tag">Repo</span></h3>
-            <p>Access the original repository by valerynx for the latest updates and contributions.</p>
-            <a href="https://github.com/valerynx/a32-useful-things" class="btn" target="_blank">Open GitHub</a>
-        </div>
+    <div class="callout">
+        <b>NOTICE:</b> All resources provided here are intended for the 4G model (A325F/M/N). Ensure you check your model before flashing any recovery or ROM.
     </div>
-</main>
 
-<footer>
-    <p>Inspired by the <strong>valerynx/a32-useful-things</strong> repository.</p>
-    <p>Used font: <strong>JetBrains Mono</strong></p>
-</footer>
+    <div class="grid">
+        <section>
+            <h3>Custom Recovery <span class="tag">TWRP</span></h3>
+            <p>Installation guides for TWRP and OrangeFox Recovery. Essential for flashing custom ROMs and rooting.</p>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                → Compatible: Android 11, 12, 13
+            </div>
+            <a href="https://valerynx.github.io/downloadcenter" class="btn">Download Center</a>
+        </section>
+
+        <section class="github-link">
+            <h3>Source Code <span class="tag">REPO</span></h3>
+            <p>Access the original GitHub repository for the latest commits, scripts, and useful binaries.</p>
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                → github.com/valerynx
+            </div>
+            <a href="https://github.com/valerynx/a32-useful-things" class="btn" target="_blank">Open GitHub</a>
+        </section>
+
+        <section>
+            <h3>Guides Hub <span class="tag">DOCS</span></h3>
+            <p>Step-by-step instructions on how to unlock your bootloader and prepare for ROM installation.</p>
+            <a href="#" class="btn">View Guides</a>
+        </section>
+
+        <section>
+            <h3>Community <span class="tag">TG</span></h3>
+            <p>Join the Telegram group for real-time support, troubleshooting, and project updates.</p>
+            <a href="https://t.me/lumiromgroup" class="btn" target="_blank">Join Group</a>
+        </section>
+    </div>
+
+    <footer>
+        Inspired by <strong>valerynx/a32-useful-things</strong><br>
+    </footer>
+</div>
 
 </body>
 </html>
