@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>valerynx - pinned repositories</title>
+    <title>valerynx - a32/kernel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
 
         .wrapper {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 0 auto;
         }
 
         header {
@@ -36,75 +36,98 @@
             margin-bottom: 40px;
         }
 
-        h1 {
+        header h1 {
             color: var(--accent);
             font-size: 1.8rem;
             margin: 0;
+            display: flex;
+            align-items: center;
         }
 
-        .header-desc {
+        header h1::before {
+            content: "~/ ";
+            opacity: 0.5;
+        }
+
+        .description {
             color: var(--text-muted);
             margin-top: 10px;
-            font-size: 0.95rem;
         }
 
-        .repo-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .repo-card {
+        section {
             background: var(--card);
-            border: 1px solid #222;
             padding: 25px;
             border-radius: 8px;
+            border: 1px solid #222;
             display: flex;
             flex-direction: column;
-            transition: border-color 0.3s ease, transform 0.2s ease;
+            justify-content: space-between;
+            transition: border-color 0.3s ease;
         }
 
-        .repo-card:hover {
+        section:hover {
             border-color: var(--accent);
-            transform: translateY(-4px);
         }
 
-        .repo-name {
-            color: var(--accent);
-            font-weight: 700;
-            text-decoration: none;
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .repo-name:hover {
-            text-decoration: underline;
-        }
-
-        .repo-description {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-
-        .repo-stats {
+        .card-header {
             display: flex;
-            gap: 15px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            border-top: 1px solid #222;
-            padding-top: 15px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
-        .lang-dot {
-            height: 8px;
-            width: 8px;
-            background-color: var(--accent);
-            border-radius: 50%;
+        h3 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .btn {
             display: inline-block;
-            margin-right: 5px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid var(--accent);
+            padding: 6px 14px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .callout {
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
         }
 
         footer {
@@ -116,13 +139,8 @@
             margin-top: 50px;
         }
 
-        .error-box {
-            grid-column: 1 / -1;
-            padding: 40px;
-            text-align: center;
-            border: 1px dashed var(--accent);
-            background: rgba(168, 85, 247, 0.05);
-            border-radius: 8px;
+        footer strong {
+            color: var(--accent);
         }
     </style>
 </head>
@@ -130,83 +148,66 @@
 
 <div class="wrapper">
     <header>
-        <h1 id="header-title">~/valerynx/pinned</h1>
-        <p class="header-desc">pinned repositories from <strong>valerynx</strong>.</p>
+        <h1>valerynx/a32/kernel</h1>
+        <div class="description">Collection of kernel sources for the Samsung Galaxy A32.</div>
     </header>
 
-    <main class="repo-grid" id="repo-container">
-        </main>
+    <div class="callout">
+        <b>Note:</b> EroFS kernels are optimized for modern ROMs (LumiROM 8.3+). Use Normal kernels for older or stock-based configurations.
+    </div>
+
+    <div class="grid">
+        <section>
+            <div class="card-header">
+                <h3>vampire</h3>
+                <span class="tag">EroFS</span>
+            </div>
+            <p>An experimental repository of the Moonlight kernel project.</p>
+            <a href="https://github.com/valerynx/vampire_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section>
+            <div class="card-header">
+                <h3>moonlight</h3>
+                <span class="tag">EroFS</span>
+            </div>
+            <p>A combined version of Helium + Lumikernel EROFS.</p>
+            <a href="https://github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section>
+            <div class="card-header">
+                <h3>lumikernel</h3>
+                <span class="tag">EroFS</span>
+            </div>
+            <p>Original source of Moonlight. Recommended for version >= 8.3.</p>
+            <a href="https://github.com/valerynx/moonlight_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section style="border-style: dashed;">
+            <div class="card-header">
+                <h3>vigus</h3>
+                <span class="tag">Normal</span>
+            </div>
+            <p>Kernel source upstreamed to .356 and beyond.</p>
+            <a href="https://github.com/Samsung-MT6769-Devs/android_kernel_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+
+        <section style="border-style: dashed;">
+            <div class="card-header">
+                <h3>realahnet</h3>
+                <span class="tag">Normal</span>
+            </div>
+            <p>The original stock-based kernel source for A32.</p>
+            <a href="https://github.com/realahnet/android_kernel_samsung_a32" class="btn" target="_blank">View Source</a>
+        </section>
+    </div>
 
     <footer>
-        JETBRAINS MONO // GITHUB PROJECTS<br>
+        JETBRAINS MONO // KERNEL ARCHIVE<br>
         Inspired by <strong>valerynx/a32-useful-things</strong>
     </footer>
 </div>
 
-<script>
-    const GITHUB_USERNAME = 'valerynx';
-
-    async function fetchPinnedRepos() {
-        const container = document.getElementById('repo-container');
-
-        try {
-            const response = await fetch(`https://pinned.berrysauce.dev/get/${GITHUB_USERNAME}`);
-            if (!response.ok) throw new Error('Pinned service unavailable');
-
-            const repos = await response.json();
-
-            // Logic updated: We no longer overwrite the static title with dynamic text
-            container.innerHTML = '';
-
-            repos.forEach(repo => {
-                const card = document.createElement('div');
-                card.className = 'repo-card';
-                card.innerHTML = `
-                    <a href="${repo.link}" target="_blank" class="repo-name">${repo.name}</a>
-                    <p class="repo-description">${repo.description || "No description provided."}</p>
-                    <div class="repo-stats">
-                        <span>
-                            <span class="lang-dot" style="background-color: ${repo.languageColor || 'var(--accent)'}"></span>
-                            ${repo.language}
-                        </span>
-                        <span>⭐ ${repo.stars}</span>
-                        <span>🍴 ${repo.forks}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        } catch (error) {
-            console.error(error);
-            container.innerHTML = `
-                <div class="error-box">
-                    <p>Unable to load pinned repos. Showing recent activity instead...</p>
-                </div>
-            `;
-            fetchRecentFallback();
-        }
-    }
-
-    async function fetchRecentFallback() {
-        const container = document.getElementById('repo-container');
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`);
-        const repos = await response.json();
-
-        repos.forEach(repo => {
-            const card = document.createElement('div');
-            card.className = 'repo-card';
-            card.innerHTML = `
-                <a href="${repo.html_url}" target="_blank" class="repo-name">${repo.name}</a>
-                <p class="repo-description">${repo.description || "Recent activity..."}</p>
-                <div class="repo-stats">
-                    <span><span class="lang-dot"></span> ${repo.language || 'Code'}</span>
-                    <span>⭐ ${repo.stargazers_count}</span>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    fetchPinnedRepos();
-</script>
 </body>
 </html>
