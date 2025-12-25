@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to prepare A32 to install ROMS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0d0d;
+            --card: #161616;
+            --accent: #a855f7;
+            --text: #e5e7eb;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .author-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .callout {
+            background: rgba(168, 85, 247, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .callout b {
+            color: #fff;
+        }
+
+        section {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #222;
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            display: inline-block;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        code {
+            background: #000;
+            color: var(--accent);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .sub-list {
+            padding-left: 30px;
+            margin-top: 10px;
+        }
+
+        .sub-list li::before {
+            content: "•";
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--accent);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <header>
+        <h1>How to prepare A32 to install ROMS</h1>
+        <div class="author-date">Luminous | 418 • December 23, 2025</div>
+    </header>
+
+    <div class="callout">
+        <b>&lt;!&gt;</b> the installation will require <b>WIPING DATA</b>. You will also lose access to all Knox-based solutions like Secure Folder.<br>
+        Backup every precious data you have on your phone.
+    </div>
+
+    <div class="callout">
+        <b>&lt;!&gt;</b> PC is required. Windows is preferred. (You probably know what you are doing when using Linux/Heimdall. We don't talk about Macs)
+    </div>
+
+    <section>
+        <h2>Unlock Bootloader</h2>
+        <ul>
+            <li>Go to <b>Settings > About Phone > About Software</b>. Tap <code>build number</code> (10 times) until "you are now a developer" toast shows up.</li>
+            <li>Go back, go to <b>Developer Settings</b>.</li>
+            <li>Turn on <b>OEM unlock</b> toggle.</li>
+            <li>Turn off your phone, hold <code>vol-up + vol-down</code>, then plug in charging cable (please don't use 3rd-party charging-only cable, it must have data transfer capability).</li>
+            <li>Your device will boot into download mode with a warning. Accept it.</li>
+            <li>Hold <code>volume-up</code> until the phone shows the bootloader unlock panel "Unlock Bootloader?".</li>
+            <li>Press <code>volume-up</code> again. Now your phone bootloader is unlocked.</li>
+        </ul>
+        <div class="callout">
+            <b>&lt;!&gt;</b> It will now begin the process of wiping data. Let it do its job.
+        </div>
+        <ul>
+            <li>When it reboots to OS, finish setting up your device.</li>
+            <li>Double check to make sure <b>OEM Unlock</b> is still <b>ON</b>.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Preparing for the installation</h2>
+        <ul>
+            <li>Download <b><a href="https://github.com/valerynx/a32-useful-things/blob/main/Recoverys/TWRP-3.7.0_erofs-a32-20251225.tar">TWRP</a>, <a href="https://github.com/valerynx/a32-useful-things/tree/main/VBmeta">VBMeta</a> and <a href="https://github.com/valerynx/a32-useful-things/tree/main/Odin">ODIN</a></b>.</li>
+            <li>Install <b>Samsung USB Driver</b>.</li>
+            <li>Open <b>Odin</b>.</li>
+            <li>Connect your phone to your PC. There should be a <b>COM</b> entry on the top.</li>
+            <li>Make sure your phone is in <b>Download Mode</b>.</li>
+            <li>Make sure that <b>OEM LOCK</b> and <b>REACTIVATION LOCK</b> on your screen show "OFF". If it's not off, <b>DO NOT PROCEED ANY FURTHER</b>.</li>
+        </ul>
+        <div class="callout" style="border-color: #f59e0b; background: rgba(245, 158, 11, 0.05);">
+            <b style="color: #f59e0b;">&lt;!&gt;</b> For those with lock ON, use your device for 7 days without rebooting once. Then check the locks above again.
+        </div>
+    </section>
+
+    <section>
+        <h2>Installing</h2>
+        <ul>
+            <li>Ensure phone is in <b>Download mode</b>.</li>
+            <li>In <b>Odin</b>:
+                <ul class="sub-list">
+                    <li>Load in <b>Userdata</b>: <code>VBMeta_disabler.tar</code> file.</li>
+                    <li>Load in <b>AP</b>: <code>TWRP TAR</code> file.</li>
+                </ul>
+            </li>
+            <li><b>Prepare yourself</b>. keep your hand on Volume-up and Power button (don't press yet).</li>
+            <li>In Odin, press <b>Start</b>. It will flash, then reboot. When the screen turned off, quickly press <b>Vol-up and Power button</b> to boot to recovery (this should take about 20~30 seconds).</li>
+        </ul>
+        <div class="callout">
+            <b>&lt;!&gt;</b> You should have TWRP up and running now.
+        </div>
+    </section>
+
+    <section>
+        <h2>Post-Installation</h2>
+        <ul>
+            <li><b>MUST:</b> Trigger Multi-disabler. In TWRP, go to <b>Advanced > Terminal</b>.</li>
+            <li>Type <code>multidisabler</code>, then enter. If it fails with something about vendor free space, run it again.</li>
+            <li>Run <code>multidisabler</code> again.</li>
+            <li>Go to main screen. go to <b>Wipe > Format Data</b>, type <code>yes</code> then swipe.</li>
+            <li>Reboot to Recovery. Now you can do other stuff.</li>
+            <li><b>Should:</b> Backup all vital partitions: In TWRP, go to <b>Backup</b>.</li>
+            <li>Backup: <b>EFS, Modem, NVRAM</b>.</li>
+        </ul>
+    </section>
+
+    <div style="text-align: center; font-size: 1.2rem; margin: 40px 0;">
+        And you're good to go.
+    </div>
+
+    <footer>
+        ~/valerynx/a32/guide/prepare
+    </footer>
+</div>
+
+</body>
+</html>
