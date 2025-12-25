@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luminous A32 Guides Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #121212;
+            --accent: #a855f7;
+            --text: #ffffff;
+            --text-dim: #9ca3af;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .hub-container {
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
+        }
+
+        p {
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .guide-link {
+            background: var(--surface);
+            border: 1px solid #222;
+            padding: 18px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .guide-link:hover {
+            border-color: var(--accent);
+            background: rgba(168, 85, 247, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .guide-link span {
+            color: var(--accent);
+        }
+
+        .category-label {
+            text-align: left;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+    </style>
+</head>
+<body>
+
+<div class="hub-container">
+    <div class="profile-img">⚡︎</div>
+    <h1>Guide for A32 users</h1>
+    <p>Select a guide to proceed</p>
+
+    <div class="nav-links">
+        <div class="category-label">Phase 01</div>
+        <a href="https://valerynx.vercel.app/a32/guide/prepare" class="guide-link">
+            Prepare & Unlock <span>→</span>
+        </a>
+
+        <div class="category-label">Phase 02</div>
+        <a href="https://valerynx.vercel.app/a32/guide/lumirom-tutorial" class="guide-link">
+            Install LumiROM <span>→</span>
+        </a>
+
+        <div class="category-label">Resources</div>
+        <a href="https://github.com/Luminous418" target="_blank" class="guide-link">
+            GitHub Files <span>→</span>
+        </a>
+        <a href="https://t.me/lumiromgroup" target="_blank" class="guide-link">
+            Telegram Support <span>→</span>
+        </a>
+    </div>
+
+    <footer>
+        ~/valerynx/a32/guide
+    </footer>
+</div>
+
+</body>
+</html>
