@@ -6,64 +6,166 @@
     <title>valerynx - download center</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d0d0d;
-            --card: #161616;
-            --accent: #a855f7;
-            --text: #e5e7eb;
-            --text-muted: #9ca3af;
+            /* --- Dark Mode --- */
+            --md-sys-color-primary: #adc6ff;
+            --md-sys-color-on-primary: #002e69;
+            --md-sys-color-primary-container: #1e44ac;
+            --md-sys-color-on-primary-container: #d8e2ff;
+            --md-sys-color-surface: #111318;
+            --md-sys-color-on-surface: #e2e2e9;
+            --md-sys-color-surface-container: #1d2024;
+            --md-sys-color-surface-container-high: #272a2f;
+            --md-sys-color-outline-variant: #44474e;
+            --md-sys-color-secondary-container: #33353a;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="light"] {
+            /* --- Light Mode --- */
+            --md-sys-color-primary: #3f5aa9;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #d8e2ff;
+            --md-sys-color-on-primary-container: #001a41;
+            --md-sys-color-surface: #f9f9ff;
+            --md-sys-color-on-surface: #191c20;
+            --md-sys-color-surface-container: #eff0f7;
+            --md-sys-color-surface-container-high: #e3e2e9;
+            --md-sys-color-outline-variant: #c4c6d0;
+            --md-sys-color-secondary-container: #e1e2ec;
         }
 
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            padding-top: 80px;
+            transition: background-color var(--transition-speed);
         }
 
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background-color: var(--md-sys-color-surface);
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 24px;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--md-sys-color-on-surface);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: var(--md-sys-color-surface-container-high);
+        }
+
+        .nav-links a.active {
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+        }
+
+        /* --- Theme Toggle Buttons --- */
+        .theme-controls {
+            display: flex;
+            background: var(--md-sys-color-surface-container);
+            padding: 4px;
+            border-radius: 100px;
+            border: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .theme-btn {
+            border: none;
+            background: none;
+            color: var(--md-sys-color-on-surface);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        /* --- Layout --- */
         .wrapper {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 0 auto;
+            padding: 40px 24px;
         }
 
-        header {
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-
-        h1 {
-            color: var(--accent);
-            font-size: 2rem;
-            margin: 0;
-            text-transform: lowercase;
-        }
+        header { margin-bottom: 40px; }
+        h1 { color: var(--md-sys-color-primary); font-size: 2.2rem; font-weight: 700; margin: 0; letter-spacing: -0.03em; }
 
         section {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            border: 1px solid #222;
+            background: var(--md-sys-color-surface-container);
+            padding: 28px;
+            border-radius: 28px;
+            margin-bottom: 24px;
+            border: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        section:hover {
+            border-color: var(--md-sys-color-outline-variant);
         }
 
         h3 {
-            color: var(--accent);
+            color: var(--md-sys-color-primary);
             margin-top: 0;
-            font-size: 1.2rem;
-            text-transform: lowercase;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
         }
 
         h3::before {
-            content: "# ";
+            content: "#";
             opacity: 0.5;
-            margin-right: 8px;
+            margin-right: 12px;
+            font-weight: 400;
         }
 
         ul {
@@ -73,8 +175,8 @@
         }
 
         li {
-            padding: 8px 0;
-            border-bottom: 1px solid #222;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -84,57 +186,77 @@
             border-bottom: none;
         }
 
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-
         .btn-download {
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            text-decoration: none;
             font-size: 0.85rem;
-            border: 1px solid var(--accent);
-            padding: 4px 12px;
-            border-radius: 4px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 100px;
+            transition: filter 0.2s, transform 0.1s;
         }
 
         .btn-download:hover {
-            background: var(--accent);
-            color: #000;
-            text-decoration: none;
+            filter: brightness(1.1);
+            transform: translateY(-1px);
         }
 
         .callout {
-            background: rgba(168, 85, 247, 0.1);
-            border-left: 4px solid var(--accent);
-            padding: 20px;
-            margin-top: 50px;
+            background: var(--md-sys-color-secondary-container);
+            padding: 28px;
+            border-radius: 28px;
+            margin-top: 48px;
+            border: 1px solid var(--md-sys-color-outline-variant);
         }
 
         .contact-item {
             display: block;
-            margin-top: 10px;
+            margin-top: 12px;
+            font-size: 0.95rem;
         }
 
         .contact-item b {
-            color: var(--accent);
-            width: 100px;
+            color: var(--md-sys-color-primary);
+            width: 90px;
             display: inline-block;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-muted);
-            font-size: 0.8rem;
+        .contact-item a {
+            color: var(--md-sys-color-on-surface);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            opacity: 0.9;
         }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 1.8rem; }
+            li { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .btn-download { align-self: flex-start; }
+        }
+
+        footer { text-align: center; padding: 60px 0; opacity: 0.5; font-size: 0.85rem; }
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="nav-content">
+        <a href="https://valerynx.vercel.app/" class="nav-logo">valerynx</a>
+        <div class="nav-links">
+            <a href="https://valerynx.vercel.app/">Home</a>
+            <a href="https://valerynx.vercel.app/a32/guide/">Guide</a>
+            <a href="#" class="active">Download</a>
+            <a href="https://valerynx.vercel.app/a32/kernel/">Kernel</a>
+            <a href="https://valerynx.vercel.app/pinned/">Pinned</a>
+        </div>
+        <div class="theme-controls">
+            <button class="theme-btn" id="btn-light">Light</button>
+            <button class="theme-btn" id="btn-dark">Dark</button>
+        </div>
+    </div>
+</nav>
 
 <div class="wrapper">
     <header>
@@ -187,6 +309,30 @@
         ~/valerynx/downloadcenter
     </footer>
 </div>
+
+<script>
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    const htmlElement = document.documentElement;
+
+    function setTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'light') {
+            btnLight.classList.add('active');
+            btnDark.classList.remove('active');
+        } else {
+            btnDark.classList.add('active');
+            btnLight.classList.remove('active');
+        }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    btnLight.addEventListener('click', () => setTheme('light'));
+    btnDark.addEventListener('click', () => setTheme('dark'));
+</script>
 
 </body>
 </html>
