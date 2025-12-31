@@ -3,124 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to prepare A32 to install ROMS</title>
+    <title>valerynx - prepare a32</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d0d0d;
-            --card: #161616;
-            --accent: #a855f7;
-            --text: #e5e7eb;
-            --text-muted: #9ca3af;
+            /* --- Dark Mode --- */
+            --md-sys-color-primary: #adc6ff;
+            --md-sys-color-on-primary: #002e69;
+            --md-sys-color-primary-container: #1e44ac;
+            --md-sys-color-on-primary-container: #d8e2ff;
+            --md-sys-color-surface: #111318;
+            --md-sys-color-on-surface: #e2e2e9;
+            --md-sys-color-surface-container: #1d2024;
+            --md-sys-color-surface-container-high: #272a2f;
+            --md-sys-color-outline-variant: #44474e;
+            --md-sys-color-error-container: #410002;
+            --md-sys-color-on-error-container: #ffdad6;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="light"] {
+            /* --- Light Mode --- */
+            --md-sys-color-primary: #3f5aa9;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #d8e2ff;
+            --md-sys-color-on-primary-container: #001a41;
+            --md-sys-color-surface: #f9f9ff;
+            --md-sys-color-on-surface: #191c20;
+            --md-sys-color-surface-container: #eff0f7;
+            --md-sys-color-surface-container-high: #e3e2e9;
+            --md-sys-color-outline-variant: #c4c6d0;
+            --md-sys-color-error-container: #ffdad6;
+            --md-sys-color-on-error-container: #410002;
         }
 
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            padding-top: 80px;
+            transition: background-color var(--transition-speed);
         }
 
-        .wrapper {
-            max-width: 800px;
-            margin: 0 auto;
+        /* --- Navigation --- */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; height: 72px;
+            background-color: var(--md-sys-color-surface);
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+            display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 0 24px;
         }
+        .nav-content { width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-weight: 700; color: var(--md-sys-color-primary); text-decoration: none; font-size: 1.1rem; }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-links a { text-decoration: none; color: var(--md-sys-color-on-surface); padding: 8px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; }
+        .nav-links a.active { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
+        .theme-controls { display: flex; background: var(--md-sys-color-surface-container); padding: 4px; border-radius: 100px; border: 1px solid var(--md-sys-color-outline-variant); }
+        .theme-btn { border: none; background: none; color: var(--md-sys-color-on-surface); padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; cursor: pointer; }
+        .theme-btn.active { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
 
-        header {
-            margin-bottom: 40px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 20px;
-        }
-
-        h1 {
-            color: var(--accent);
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .author-date {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        /* --- Content --- */
+        .wrapper { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+        header { margin-bottom: 40px; border-bottom: 1px solid var(--md-sys-color-outline-variant); padding-bottom: 24px; }
+        h1 { font-size: 2.2rem; font-weight: 800; color: var(--md-sys-color-primary); margin: 0 0 12px 0; letter-spacing: -0.03em; line-height: 1.2; }
+        .author-date { opacity: 0.6; font-size: 0.9rem; font-weight: 500; }
 
         .callout {
-            background: rgba(168, 85, 247, 0.1);
-            border-left: 4px solid var(--accent);
-            padding: 15px 20px;
-            margin: 20px 0;
+            background: var(--md-sys-color-surface-container-high);
+            border-left: 5px solid var(--md-sys-color-primary);
+            padding: 20px 24px;
+            border-radius: 0 16px 16px 0;
+            margin: 24px 0;
             font-size: 0.95rem;
         }
-
-        .callout b {
-            color: #fff;
-        }
+        .callout-warning { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.08); }
 
         section {
-            background: var(--card);
-            padding: 30px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            border: 1px solid #222;
+            background: var(--md-sys-color-surface-container);
+            padding: 32px;
+            border-radius: 28px;
+            margin-bottom: 32px;
+            border: 1px solid var(--md-sys-color-outline-variant);
         }
+        h2 { font-size: 1.4rem; font-weight: 700; color: var(--md-sys-color-primary); margin: 0 0 20px 0; }
 
-        h2 {
-            color: var(--accent);
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            display: inline-block;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 14px; padding-left: 28px; position: relative; }
+        li::before { content: "→"; position: absolute; left: 0; color: var(--md-sys-color-primary); font-weight: 700; }
 
         code {
-            background: #000;
-            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace, 'Google Sans Flex';
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
             padding: 2px 6px;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 0.9em;
         }
 
-        .sub-list {
-            padding-left: 30px;
-            margin-top: 10px;
-        }
+        .sub-list { padding-left: 24px; margin-top: 12px; }
+        .sub-list li::before { content: "•"; color: var(--md-sys-color-outline-variant); }
 
-        .sub-list li::before {
-            content: "•";
-        }
+        footer { text-align: center; padding: 60px 0; opacity: 0.5; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; border-top: 1px solid var(--md-sys-color-outline-variant); }
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--accent);
-            font-weight: bold;
-            letter-spacing: 2px;
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="nav-content">
+        <a href="https://valerynx.vercel.app/" class="nav-logo">valerynx</a>
+        <div class="nav-links">
+            <a href="https://valerynx.vercel.app/">Home</a>
+            <a href="https://valerynx.vercel.app/a32/guide/" class="active">Guide</a>
+            <a href="https://valerynx.vercel.app/downloadcenter">Download</a>
+            <a href="https://valerynx.vercel.app/a32/kernel/">Kernel</a>
+            <a href="https://valerynx.vercel.app/pinned/">Pinned</a>
+        </div>
+        <div class="theme-controls">
+            <button class="theme-btn" id="btn-light">Light</button>
+            <button class="theme-btn" id="btn-dark">Dark</button>
+        </div>
+    </div>
+</nav>
 
 <div class="wrapper">
     <header>
@@ -128,9 +139,8 @@
         <div class="author-date">Luminous | 418 • December 23, 2025</div>
     </header>
 
-    <div class="callout">
-        <b>&lt;!&gt;</b> the installation will require <b>WIPING DATA</b>. You will also lose access to all Knox-based solutions like Secure Folder.<br>
-        Backup every precious data you have on your phone.
+    <div class="callout" style="border-left-color: #ef4444; background: rgba(239, 68, 68, 0.08);">
+        <b>&lt;!&gt;</b> The installation will require <b>WIPING DATA</b>. You will also lose access to all Knox-based solutions like Secure Folder. Backup every precious data you have on your phone.
     </div>
 
     <div class="callout">
@@ -143,12 +153,12 @@
             <li>Go to <b>Settings > About Phone > About Software</b>. Tap <code>build number</code> (10 times) until "you are now a developer" toast shows up.</li>
             <li>Go back, go to <b>Developer Settings</b>.</li>
             <li>Turn on <b>OEM unlock</b> toggle.</li>
-            <li>Turn off your phone, hold <code>vol-up + vol-down</code>, then plug in charging cable (please don't use 3rd-party charging-only cable, it must have data transfer capability).</li>
+            <li>Turn off your phone, hold <code>vol-up + vol-down</code>, then plug in charging cable (must have data transfer capability).</li>
             <li>Your device will boot into download mode with a warning. Accept it.</li>
             <li>Hold <code>volume-up</code> until the phone shows the bootloader unlock panel "Unlock Bootloader?".</li>
             <li>Press <code>volume-up</code> again. Now your phone bootloader is unlocked.</li>
         </ul>
-        <div class="callout">
+        <div class="callout" style="border-left-color: #f59e0b;">
             <b>&lt;!&gt;</b> It will now begin the process of wiping data. Let it do its job.
         </div>
         <ul>
@@ -167,7 +177,7 @@
             <li>Make sure your phone is in <b>Download Mode</b>.</li>
             <li>Make sure that <b>OEM LOCK</b> and <b>REACTIVATION LOCK</b> on your screen show "OFF". If it's not off, <b>DO NOT PROCEED ANY FURTHER</b>.</li>
         </ul>
-        <div class="callout" style="border-color: #f59e0b; background: rgba(245, 158, 11, 0.05);">
+        <div class="callout callout-warning">
             <b style="color: #f59e0b;">&lt;!&gt;</b> For those with lock ON, use your device for 7 days without rebooting once. Then check the locks above again.
         </div>
     </section>
@@ -182,12 +192,9 @@
                     <li>Load in <b>AP</b>: <code>TWRP TAR</code> file.</li>
                 </ul>
             </li>
-            <li><b>Prepare yourself</b>. keep your hand on Volume-up and Power button (don't press yet).</li>
-            <li>In Odin, press <b>Start</b>. It will flash, then reboot. When the screen turned off, quickly press <b>Vol-up and Power button</b> to boot to recovery (this should take about 20~30 seconds).</li>
+            <li><b>Prepare yourself</b>. Keep your hand on Volume-up and Power button (don't press yet).</li>
+            <li>In Odin, press <b>Start</b>. It will flash, then reboot. When the screen turns off, quickly press <b>Vol-up and Power button</b> to boot to recovery (about 20~30 seconds).</li>
         </ul>
-        <div class="callout">
-            <b>&lt;!&gt;</b> You should have TWRP up and running now.
-        </div>
     </section>
 
     <section>
@@ -196,14 +203,14 @@
             <li><b>MUST:</b> Trigger Multi-disabler. In TWRP, go to <b>Advanced > Terminal</b>.</li>
             <li>Type <code>multidisabler</code>, then enter. If it fails with something about vendor free space, run it again.</li>
             <li>Run <code>multidisabler</code> again.</li>
-            <li>Go to main screen. go to <b>Wipe > Format Data</b>, type <code>yes</code> then swipe.</li>
+            <li>Go to main screen. Go to <b>Wipe > Format Data</b>, type <code>yes</code> then swipe.</li>
             <li>Reboot to Recovery. Now you can do other stuff.</li>
-            <li><b>Should:</b> Backup all vital partitions: In TWRP, go to <b>Backup</b>.</li>
+            <li><b>Should:</b> Backup vital partitions: In TWRP, go to <b>Backup</b>.</li>
             <li>Backup: <b>EFS, Modem, NVRAM</b>.</li>
         </ul>
     </section>
 
-    <div style="text-align: center; font-size: 1.2rem; margin: 40px 0;">
+    <div style="text-align: center; font-size: 1.25rem; font-weight: 600; margin: 48px 0; color: var(--md-sys-color-primary);">
         And you're good to go.
     </div>
 
@@ -211,6 +218,30 @@
         ~/valerynx/a32/guide/prepare
     </footer>
 </div>
+
+<script>
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    const htmlElement = document.documentElement;
+
+    function setTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'light') {
+            btnLight.classList.add('active');
+            btnDark.classList.remove('active');
+        } else {
+            btnDark.classList.add('active');
+            btnLight.classList.remove('active');
+        }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    btnLight.addEventListener('click', () => setTheme('light'));
+    btnDark.addEventListener('click', () => setTheme('dark'));
+</script>
 
 </body>
 </html>

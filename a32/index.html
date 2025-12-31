@@ -6,80 +6,174 @@
     <title>valerynx - a32 useful things</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d0d0d;
-            --card: #161616;
-            --accent: #a855f7; /* Purple from your guides */
-            --text: #e5e7eb;
-            --text-muted: #9ca3af;
+            /* --- Dark Mode --- */
+            --md-sys-color-primary: #adc6ff;
+            --md-sys-color-on-primary: #002e69;
+            --md-sys-color-primary-container: #1e44ac;
+            --md-sys-color-on-primary-container: #d8e2ff;
+            --md-sys-color-surface: #111318;
+            --md-sys-color-on-surface: #e2e2e9;
+            --md-sys-color-surface-container: #1d2024;
+            --md-sys-color-surface-container-high: #272a2f;
+            --md-sys-color-outline-variant: #44474e;
+            --md-sys-color-secondary-container: #33353a;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="light"] {
+            /* --- Light Mode --- */
+            --md-sys-color-primary: #3f5aa9;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #d8e2ff;
+            --md-sys-color-on-primary-container: #001a41;
+            --md-sys-color-surface: #f9f9ff;
+            --md-sys-color-on-surface: #191c20;
+            --md-sys-color-surface-container: #eff0f7;
+            --md-sys-color-surface-container-high: #e3e2e9;
+            --md-sys-color-outline-variant: #c4c6d0;
+            --md-sys-color-secondary-container: #e1e2ec;
         }
 
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            font-family: 'Google Sans Flex', sans-serif;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            padding-top: 80px;
+            transition: background-color var(--transition-speed);
         }
 
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background-color: var(--md-sys-color-surface);
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 24px;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--md-sys-color-on-surface);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: var(--md-sys-color-surface-container-high);
+        }
+
+        .nav-links a.active {
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+        }
+
+        /* --- Theme Toggle Buttons --- */
+        .theme-controls {
+            display: flex;
+            background: var(--md-sys-color-surface-container);
+            padding: 4px;
+            border-radius: 100px;
+            border: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .theme-btn {
+            border: none;
+            background: none;
+            color: var(--md-sys-color-on-surface);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .theme-btn.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        /* --- Layout --- */
         .wrapper {
             max-width: 900px;
             margin: 0 auto;
+            padding: 40px 24px;
         }
 
-        header {
-            margin-bottom: 40px;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 20px;
-            text-align: left;
-        }
-
-        h1 {
-            color: var(--accent);
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            text-transform: lowercase;
-        }
-
-        .description {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
+        header { margin-bottom: 32px; }
+        h1 { color: var(--md-sys-color-primary); font-size: 2.2rem; font-weight: 700; margin: 0; letter-spacing: -0.03em; }
+        .description { opacity: 0.7; font-size: 1.05rem; margin-top: 8px; }
 
         .callout {
-            background: rgba(168, 85, 247, 0.1);
-            border-left: 4px solid var(--accent);
-            padding: 15px 20px;
-            margin: 20px 0;
+            background: var(--md-sys-color-secondary-container);
+            padding: 24px;
+            border-radius: 24px;
+            margin: 32px 0;
+            border: 1px solid var(--md-sys-color-outline-variant);
             font-size: 0.95rem;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
         section {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #222;
-            transition: border-color 0.3s ease;
+            background: var(--md-sys-color-surface-container);
+            padding: 32px;
+            border-radius: 28px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid transparent;
+            transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
         }
 
         section:hover {
-            border-color: var(--accent);
+            background: var(--md-sys-color-surface-container-high);
+            transform: translateY(-4px);
+            border-color: var(--md-sys-color-outline-variant);
         }
 
         h3 {
-            color: var(--accent);
+            color: var(--md-sys-color-primary);
             font-size: 1.3rem;
-            margin-top: 0;
+            margin: 0 0 16px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -87,53 +181,65 @@
 
         .tag {
             font-size: 0.7rem;
-            background: var(--accent);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: bold;
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         p {
-            margin-bottom: 20px;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 24px;
+            flex-grow: 1;
         }
 
         .btn {
-            display: inline-block;
-            color: var(--accent);
+            display: inline-flex;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
             text-decoration: none;
-            font-weight: bold;
-            border: 1px solid var(--accent);
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 100px;
             font-size: 0.9rem;
+            align-self: flex-start;
+            transition: filter 0.2s;
         }
 
         .btn:hover {
-            background: var(--accent);
-            color: #000;
+            filter: brightness(1.1);
         }
 
-        .github-link {
-            border-style: dashed;
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+            h1 { font-size: 1.8rem; }
         }
 
-        footer {
-            text-align: center;
-            padding: 60px 0;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid #222;
-            margin-top: 50px;
-        }
-
-        footer strong {
-            color: var(--accent);
-        }
+        footer { text-align: center; padding: 100px 0 50px; opacity: 0.5; font-size: 0.85rem; border-top: 1px solid var(--md-sys-color-outline-variant); margin-top: 60px; }
+        footer strong { color: var(--md-sys-color-primary); }
     </style>
 </head>
 <body>
+
+<nav>
+    <div class="nav-content">
+        <a href="#" class="nav-logo">valerynx</a>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="https://valerynx.vercel.app/a32/guide/">Guide</a>
+            <a href="https://valerynx.vercel.app/downloadcenter">Download</a>
+            <a href="https://valerynx.vercel.app/a32/kernel/">Kernel</a>
+            <a href="https://valerynx.vercel.app/pinned/">Pinned</a>
+        </div>
+        <div class="theme-controls">
+            <button class="theme-btn" id="btn-light">Light</button>
+            <button class="theme-btn" id="btn-dark">Dark</button>
+        </div>
+    </div>
+</nav>
 
 <div class="wrapper">
     <header>
@@ -149,15 +255,13 @@
         <section>
             <h3>custom recovery <span class="tag">recovery</span></h3>
             <p>installation guides for twrp and orangefox recovery, essential for flashing custom ROMs and rooting.</p>
-            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
-            </div>
             <a href="https://valerynx.github.io/downloadcenter" class="btn">download center</a>
         </section>
 
-        <section class="github-link">
+        <section style="border-style: dashed; border-color: var(--md-sys-color-outline-variant);">
             <h3>repository <span class="tag">repo</span></h3>
             <p>access the repo to see the latest commits, scripts, and useful binaries.</p>
-            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+            <div style="font-size: 0.85rem; opacity: 0.6; margin-bottom: 15px;">
                 → github.com/valerynx
             </div>
             <a href="https://github.com/valerynx/a32-useful-things" class="btn" target="_blank">Open GitHub</a>
@@ -166,7 +270,7 @@
         <section>
             <h3>guides hub<span class="tag">docs</span></h3>
             <p>step-by-step instructions on how to unlock your bootloader and prepare for ROM installation.</p>
-            <a href="#" class="btn">view guides</a>
+            <a href="https://valerynx.vercel.app/a32/guide/" class="btn">view guides</a>
         </section>
 
         <section>
@@ -180,6 +284,30 @@
         Inspired by <strong>valerynx/a32-useful-things</strong><br>
     </footer>
 </div>
+
+<script>
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    const htmlElement = document.documentElement;
+
+    function setTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (theme === 'light') {
+            btnLight.classList.add('active');
+            btnDark.classList.remove('active');
+        } else {
+            btnDark.classList.add('active');
+            btnLight.classList.remove('active');
+        }
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    btnLight.addEventListener('click', () => setTheme('light'));
+    btnDark.addEventListener('click', () => setTheme('dark'));
+</script>
 
 </body>
 </html>
