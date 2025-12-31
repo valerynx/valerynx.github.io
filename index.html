@@ -6,169 +6,247 @@
     <title>valerynx - home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0d0d0d;
-            --card: #161616;
-            --accent: #a855f7;
-            --text: #e5e7eb;
-            --text-muted: #9ca3af;
+            /* --- Dark Mode --- */
+            --md-sys-color-primary: #adc6ff;
+            --md-sys-color-on-primary: #002e69;
+            --md-sys-color-primary-container: #1e44ac;
+            --md-sys-color-on-primary-container: #d8e2ff;
+            --md-sys-color-surface: #111318;
+            --md-sys-color-on-surface: #e2e2e9;
+            --md-sys-color-surface-container: #1d2024;
+            --md-sys-color-surface-container-high: #272a2f;
+            --md-sys-color-outline-variant: #44474e;
+            --md-sys-color-secondary-container: #33353a;
+            --transition-speed: 0.3s;
+        }
+
+        [data-theme="light"] {
+            /* --- Light Mode --- */
+            --md-sys-color-primary: #3f5aa9;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #d8e2ff;
+            --md-sys-color-on-primary-container: #001a41;
+            --md-sys-color-surface: #f9f9ff;
+            --md-sys-color-on-surface: #191c20;
+            --md-sys-color-surface-container: #eff0f7;
+            --md-sys-color-surface-container-high: #e3e2e9;
+            --md-sys-color-outline-variant: #c4c6d0;
+            --md-sys-color-secondary-container: #e1e2ec;
         }
 
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            line-height: 1.6;
             margin: 0;
-            padding: 20px;
+            padding-top: 80px;
+            transition: background-color var(--transition-speed);
         }
 
+        /* --- Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background-color: var(--md-sys-color-surface);
+            border-bottom: 1px solid var(--md-sys-color-outline-variant);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 24px;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-right: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--md-sys-color-on-surface);
+            padding: 8px 14px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: var(--md-sys-color-surface-container-high);
+        }
+
+        .nav-links a.active {
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+        }
+
+        /* --- Theme Toggle Buttons --- */
+        .theme-controls {
+            display: flex;
+            background: var(--md-sys-color-surface-container);
+            padding: 4px;
+            border-radius: 100px;
+            border: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .theme-btn {
+            border: none;
+            background: none;
+            color: var(--md-sys-color-on-surface);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        /* Active styling for the selected theme button */
+        .theme-btn.active {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        /* --- Main Layout --- */
         .wrapper {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 0 auto;
+            padding: 40px 24px;
         }
 
-        header {
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 20px;
+        header { margin-bottom: 48px; }
+        h1 { color: var(--md-sys-color-primary); font-size: 2.8rem; margin: 0; letter-spacing: -0.03em; }
+        .header-desc { opacity: 0.7; font-size: 1.1rem; margin-top: 8px; }
+
+        .callout {
+            background: var(--md-sys-color-secondary-container);
+            padding: 24px;
+            border-radius: 24px;
             margin-bottom: 40px;
-        }
-
-        h1 {
-            color: var(--accent);
-            font-size: 1.8rem;
-            margin: 0;
-        }
-
-        .header-desc {
-            color: var(--text-muted);
-            margin-top: 10px;
-            font-size: 0.95rem;
+            border: 1px solid var(--md-sys-color-outline-variant);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
         section {
-            background: var(--card);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #222;
-            transition: all 0.3s ease;
+            background: var(--md-sys-color-surface-container);
+            padding: 32px;
+            border-radius: 28px;
+            transition: transform 0.2s;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
-        section:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        h3 {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-top: 0;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        h3::before {
-            content: "→ ";
-            font-weight: bold;
-        }
-
-        p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
+        section:hover { transform: translateY(-4px); background: var(--md-sys-color-surface-container-high); }
+        h3 { color: var(--md-sys-color-primary); font-size: 1.5rem; margin: 0 0 12px 0; }
+        p { opacity: 0.8; margin-bottom: 24px; flex-grow: 1; }
 
         .btn {
-            display: inline-block;
-            color: var(--accent);
+            display: inline-flex;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
             text-decoration: none;
-            font-weight: bold;
-            border: 1px solid var(--accent);
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            font-size: 0.85rem;
-            text-align: center;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 100px;
+            align-self: flex-start;
         }
 
-        .btn:hover {
-            background: var(--accent);
-            color: #000;
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2rem; }
         }
 
-        .callout {
-            background: rgba(168, 85, 247, 0.1);
-            border-left: 4px solid var(--accent);
-            padding: 15px 20px;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 0;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            border-top: 1px solid #222;
-            margin-top: 50px;
-        }
+        footer { text-align: center; padding: 80px 0; opacity: 0.5; }
     </style>
 </head>
 <body>
 
+<nav>
+    <div class="nav-content">
+        <a href="#" class="nav-logo">valerynx</a>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="https://valerynx.vercel.app/a32/guide/">Guide</a>
+            <a href="https://valerynx.vercel.app/downloadcenter">Download</a>
+            <a href="https://valerynx.vercel.app/a32/kernel/">Kernel</a>
+            <a href="https://valerynx.vercel.app/pinned/">Pinned Repositories</a>
+        </div>
+        <div class="theme-controls">
+            <button class="theme-btn" id="btn-light">Light</button>
+            <button class="theme-btn" id="btn-dark">Dark</button>
+        </div>
+    </div>
+</nav>
+
 <div class="wrapper">
     <header>
-        <h1>~/valerynx</h1>
-        <p class="header-desc">unofficial website for A32 development and resources.</p>
+        <h1>valerynx</h1>
+        <p class="header-desc">The official resource hub for Galaxy A32 development.</p>
     </header>
 
     <div class="callout">
-        welcome to our website, here you can find all the necessary tools, guides, and sources for the Samsung Galaxy A32.
+        Explore the latest kernel sources, recovery builds, and detailed flashing guides for the community.
     </div>
 
-    <main class="grid">
-        <section>
-            <h3>guides</h3>
-            <p>step-by-step instructions for unlocking bootloaders, installing recoveries, and flashing custom ROMs.</p>
-            <a href="https://valerynx.vercel.app/a32/guide/" class="btn">Browse Guides</a>
-        </section>
-
-        <section>
-            <h3>downloads</h3>
-            <p>direct links to recoveries, odin, and essential platform tools for device maintenance.</p>
-            <a href="https://valerynx.vercel.app/downloadcenter" class="btn">Open Center</a>
-        </section>
-
-        <section>
-            <h3>kernels</h3>
-            <p>a collection of kernel sources including moonlight, vampire, and vigus for different android versions.</p>
-            <a href="https://valerynx.vercel.app/a32/kernel/" class="btn">View Sources</a>
-        </section>
-
-        <section>
-            <h3>repositories</h3>
-            <p>live feed of pinned projects and recent activity from the official valerynx organization.</p>
-            <a href="https://valerynx.vercel.app/pinned/" class="btn">Explore GitHub</a>
-        </section>
-    </main>
-
     <footer>
-        &copy; 2025 valerynx
+        &copy; 2025 valerynx Hub
     </footer>
 </div>
+
+<script>
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    const htmlElement = document.documentElement;
+
+    function setTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        
+        // Update button states
+        if (theme === 'light') {
+            btnLight.classList.add('active');
+            btnDark.classList.remove('active');
+        } else {
+            btnDark.classList.add('active');
+            btnLight.classList.remove('active');
+        }
+    }
+
+    // Initialize
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    btnLight.addEventListener('click', () => setTheme('light'));
+    btnDark.addEventListener('click', () => setTheme('dark'));
+</script>
 
 </body>
 </html>
